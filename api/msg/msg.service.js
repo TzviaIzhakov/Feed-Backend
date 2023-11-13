@@ -26,12 +26,11 @@ async function query(filterBy = {txt:'', email: ''}) {
 
 function buildCriteria(filterBy) {
     const criteria = {}
- 
     if (filterBy.txt || filterBy.email) {
         const regex = new RegExp(filterBy.txt, 'i');
         criteria.$or = [
-            { 'title': { $regex: regex } },
-            { 'email': { $regex: regex } }
+            { txt: { $regex: regex } },
+            { email: { $regex: regex } }
         ];
     }
 
